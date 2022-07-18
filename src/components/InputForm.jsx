@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../assets/style/style.css';
+import styles from '../assets/style/InputForm.module.css';
 
 const InputForm = (props) => {
   const [newTitle, setNewTitle] = useState('');
@@ -10,7 +10,7 @@ const InputForm = (props) => {
     let textColor = charLeft < 10 ? 'danger' : '';
 
     return (
-      <div className={`note-char-left ${textColor}`}>
+      <div className={`${styles.note_char_left} ${textColor}`}>
         Sisa karakter {charLeft}
       </div>
     );
@@ -60,10 +60,10 @@ const InputForm = (props) => {
   };
 
   return (
-    <div className='note-input'>
+    <div className={styles.note_input}>
       <h2>Buat catatan</h2>
       <CharLimit />
-      <form onSubmit={onSubmitHandler} className='note-form'>
+      <form onSubmit={onSubmitHandler} className={styles.note_form}>
         <input
           onChange={onChangeTitleHandler}
           onKeyDown={onKeyDownTitleHandler}

@@ -7,7 +7,7 @@ const NoteCard = (props) => {
 
   return (
     <div className={styles.container}>
-      <article>
+      <article className={styles.article}>
         <h3>{title}</h3>
         <span>{formattedDate}</span>
         <p>{body}</p>

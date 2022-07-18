@@ -4,11 +4,47 @@ import { getInitialData } from './utils/index';
 
 const App = () => {
   const [notes, setNotes] = useState(getInitialData());
+  const [filteredNotes, setFilteredNotes] = useState([]);
   const [inputSearch, setInputSearch] = useState('');
 
-  const searchHandler = (e) => {
-    setInputSearch(() => e.target.value);
+  // const searchHandler = () => {
+  //   switch (todoType) {
+  //     case "completed":
+  //       setFilteredTodos(todos.filter(todo => (todo.completed)))
+  //       break;
+  //     case "uncomplete":
+  //       setFilteredTodos(todos.filter(todo => (!todo.completed)))
+  //       break;
+  //     default:
+  //       setFilteredTodos(todos);
+  //       break;
+  //   }
+  // }
+
+  const filterHandler = () => {
+    if (inputSearch) {
+      setFilteredNotes(() =>
+        notes.filter((note) =>
+          note.body.toLowerCase().split(' ').includes(inputSearch.toLowerCase())
+        )
+      );
+      // console.log(
+      //   notes.filter((note) =>
+      //     note.body.toLowerCase().split(' ').includes(inputSearch.toLowerCase())
+      //   )
+      // );
+    } else {
+      setFilteredNotes(() => notes);
+    }
   };
+
+  const searchHandler = (e) => {
+    setInputSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    filterHandler();
+  }, [inputSearch, notes]);
 
   const addNoteHandler = ({ title, body }) => {
     setNotes((prev) => [
@@ -37,9 +73,8 @@ const App = () => {
     );
   };
 
-  const onClickDeleteHandler = (id) => {
+  const onClickDeleteHandler = (id) =>
     setNotes(notes.filter((note) => note.id !== id));
-  };
 
   return (
     <main>
@@ -47,7 +82,7 @@ const App = () => {
       <div className='container'>
         <InputForm addNote={addNoteHandler} />
         <NoteList
-          notes={notes}
+          notes={filteredNotes}
           archiveBtnHandler={onClickArchiveHandler}
           deleteBtnHandler={onClickDeleteHandler}
         />
