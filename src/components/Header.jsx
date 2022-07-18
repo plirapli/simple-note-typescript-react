@@ -2,7 +2,12 @@ const Header = (props) => {
   return (
     <header>
       <h1>Notes</h1>
-      <input className='searchBar' type='text' value={props.keyword} />
+      <input
+        onChange={props.search}
+        className='searchBar'
+        type='text'
+        value={props.input}
+      />
     </header>
   );
 };
