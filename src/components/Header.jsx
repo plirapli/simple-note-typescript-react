@@ -1,5 +1,3 @@
-import '../assets/style/style.css';
-
 const Header = (props) => {
   return (
     <header>

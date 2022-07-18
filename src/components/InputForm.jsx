@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../assets/style/style.css';
 
 const InputForm = (props) => {
   const [newTitle, setNewTitle] = useState('');
@@ -60,7 +61,7 @@ const InputForm = (props) => {
 
   return (
     <div className='note-input'>
-      <h1>Buat catatan</h1>
+      <h2>Buat catatan</h2>
       <CharLimit />
       <form onSubmit={onSubmitHandler} className='note-form'>
         <input

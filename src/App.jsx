@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { Header, InputForm } from './components/index';
+import { useEffect, useState } from 'react';
+import { Header, InputForm, NoteList } from './components/index';
+import { getInitialData } from './utils/index';
 
 const App = () => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(getInitialData());
   const [inputSearch, setInputSearch] = useState('');
 
   const searchHandler = (e) => {
@@ -17,9 +18,27 @@ const App = () => {
         title,
         body,
         isArchived: false,
-        createAt: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
       },
     ]);
+  };
+
+  const onClickArchiveHandler = (id) => {
+    setNotes(
+      notes.map((note) => {
+        if (note.id === id) {
+          return {
+            ...note,
+            isArchived: !note.isArchived,
+          };
+        }
+        return note;
+      })
+    );
+  };
+
+  const onClickDeleteHandler = (id) => {
+    setNotes(notes.filter((note) => note.id !== id));
   };
 
   return (
@@ -27,6 +46,11 @@ const App = () => {
       <Header search={searchHandler} input={inputSearch} />
       <div className='container'>
         <InputForm addNote={addNoteHandler} />
+        <NoteList
+          notes={notes}
+          archiveBtnHandler={onClickArchiveHandler}
+          deleteBtnHandler={onClickDeleteHandler}
+        />
       </div>
     </main>
   );

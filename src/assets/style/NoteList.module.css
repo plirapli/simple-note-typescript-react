@@ -1,0 +1,13 @@
+.container {
+  margin-top: 2.5rem;
+  display: grid;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.card_container {
+  margin-top: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+  gap: 1.5rem;
+}
