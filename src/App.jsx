@@ -1,50 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Header, InputForm, NoteList } from './components/index';
 import { getInitialData } from './utils/index';
 
 const App = () => {
   const [notes, setNotes] = useState(getInitialData());
-  const [filteredNotes, setFilteredNotes] = useState([]);
   const [inputSearch, setInputSearch] = useState('');
 
-  // const searchHandler = () => {
-  //   switch (todoType) {
-  //     case "completed":
-  //       setFilteredTodos(todos.filter(todo => (todo.completed)))
-  //       break;
-  //     case "uncomplete":
-  //       setFilteredTodos(todos.filter(todo => (!todo.completed)))
-  //       break;
-  //     default:
-  //       setFilteredTodos(todos);
-  //       break;
-  //   }
-  // }
+  const filteredNotes = notes.filter((note) =>
+    inputSearch ? note.body.toLowerCase().includes(inputSearch) : note
+  );
 
-  const filterHandler = () => {
-    if (inputSearch) {
-      setFilteredNotes(() =>
-        notes.filter((note) =>
-          note.body.toLowerCase().split(' ').includes(inputSearch.toLowerCase())
-        )
-      );
-      // console.log(
-      //   notes.filter((note) =>
-      //     note.body.toLowerCase().split(' ').includes(inputSearch.toLowerCase())
-      //   )
-      // );
-    } else {
-      setFilteredNotes(() => notes);
-    }
-  };
-
-  const searchHandler = (e) => {
-    setInputSearch(e.target.value);
-  };
-
-  useEffect(() => {
-    filterHandler();
-  }, [inputSearch, notes]);
+  const searchHandler = (e) => setInputSearch(e.target.value.toLowerCase());
 
   const addNoteHandler = ({ title, body }) => {
     setNotes((prev) => [
