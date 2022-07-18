@@ -1,3 +1,5 @@
+import '../assets/style/style.css';
+
 const Header = (props) => {
   return (
     <header>
@@ -7,6 +9,7 @@ const Header = (props) => {
         className='searchBar'
         type='text'
         value={props.input}
+        placeholder='Cari catatan...'
       />
     </header>
   );
