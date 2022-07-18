@@ -1,7 +1,7 @@
 const Header = (props) => {
   return (
     <header>
-      <h1>Notes</h1>
+      <h1>Catatan</h1>
       <input
         onChange={props.search}
         className='searchBar'
