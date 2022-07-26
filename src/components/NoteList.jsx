@@ -1,4 +1,4 @@
-import { NoteCard } from './index';
+import { NoteCard } from './_index';
 import styles from '../assets/style/NoteList.module.css';
 
 const NoteList = ({ notes, ...props }) => {

@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { Header, InputForm, NoteList } from './components/index';
+import {
+  DeleteMessage,
+  Header,
+  InputForm,
+  NoteList,
+} from './components/_index';
 import { getInitialData } from './utils/index';
 
 const App = () => {
@@ -52,6 +57,7 @@ const App = () => {
           archiveBtnHandler={onClickArchiveHandler}
           deleteBtnHandler={onClickDeleteHandler}
         />
+        <DeleteMessage />
       </div>
     </main>
   );

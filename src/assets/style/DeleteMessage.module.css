@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  max-width: 960px;
+  color: white;
+  background-color: slategray;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.article {
+  padding: 1rem 1rem 0;
+}
+
+/* Judul otomatis truncate ketika lebih dari 2 baris */
+.article > h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article > p {
+  margin: 0.25rem 0 3.5rem;
+}
+
+.button_container {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.btn_back {
+  border-right: 0.5px solid slategray;
+  color: rgb(0 0 0 / 0.4);
+}
+
+.btn_danger {
+  border-left: 0.5px solid slategray;
+  color: red;
+}
