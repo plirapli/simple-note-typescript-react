@@ -1,10 +1,5 @@
 import { useState } from 'react';
-import {
-  DeleteMessage,
-  Header,
-  InputForm,
-  NoteList,
-} from './components/_index';
+import { Header, InputForm, NoteList } from './components/_index';
 import { getInitialData } from './utils/index';
 
 const App = () => {
@@ -48,18 +43,19 @@ const App = () => {
     setNotes(notes.filter((note) => note.id !== id));
 
   return (
-    <main>
-      <Header search={searchHandler} input={inputSearch} />
-      <div className='container'>
-        <InputForm addNote={addNoteHandler} />
-        <NoteList
-          notes={filteredNotes}
-          archiveBtnHandler={onClickArchiveHandler}
-          deleteBtnHandler={onClickDeleteHandler}
-        />
-        <DeleteMessage />
-      </div>
-    </main>
+    <>
+      <main>
+        <Header search={searchHandler} input={inputSearch} />
+        <div className='container'>
+          <InputForm addNote={addNoteHandler} />
+          <NoteList
+            notes={filteredNotes}
+            archiveBtnHandler={onClickArchiveHandler}
+            deleteBtnHandler={onClickDeleteHandler}
+          />
+        </div>
+      </main>
+    </>
   );
 };
 

@@ -18,7 +18,7 @@ const NoteCard = (props) => {
           className={styles.btn_archive}>
           Arsipkan
         </button>
-        <button onClick={() => props.delete(id)} className={styles.btn_danger}>
+        <button onClick={() => props.modal(id)} className={styles.btn_danger}>
           Hapus
         </button>
       </div>

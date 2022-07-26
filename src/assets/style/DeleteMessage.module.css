@@ -1,6 +1,22 @@
-.container {
+.bg {
+  display: none;
+  position: fixed;
+  z-index: 4;
+  left: 0;
+  top: 0;
   width: 100%;
-  max-width: 960px;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0 0 0 / 0.4);
+}
+
+.bg_show {
+  display: block;
+}
+
+.container {
+  max-width: 640px;
+  margin: 24vh auto;
   color: white;
   background-color: slategray;
   border-radius: 1rem;

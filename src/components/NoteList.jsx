@@ -1,25 +1,52 @@
-import { NoteCard } from './_index';
+import { useState } from 'react';
+import { NoteCard, DeleteMessage } from './_index';
 import styles from '../assets/style/NoteList.module.css';
 
 const NoteList = ({ notes, ...props }) => {
+  const [selectedNote, setSelectedNote] = useState({});
+  const [showModal, setShowModal] = useState(false);
+
   const unarchivedNotes = notes.filter((note) => !note.isArchived);
   const archivedNotes = notes.filter((note) => note.isArchived);
 
+  const onClickBackModalHandler = () => {
+    setShowModal(false);
+  };
+
+  const onClickDeleteModalHandler = (id) => {
+    setShowModal(true);
+    setSelectedNote(notes.filter((note) => note.id === id)[0]);
+  };
+
+  const onClickDeleteHandler = (id) => {
+    props.deleteBtnHandler(id);
+    setShowModal(false);
+  };
+
   return (
-    <div className={styles.container}>
-      <NoteSection
-        header='Catatan Aktif'
-        notes={unarchivedNotes}
-        delete={props.deleteBtnHandler}
-        archive={props.archiveBtnHandler}
+    <>
+      <div className={styles.container}>
+        <NoteSection
+          header='Catatan Aktif'
+          notes={unarchivedNotes}
+          archive={props.archiveBtnHandler}
+          deleteModal={onClickDeleteModalHandler}
+        />
+        <NoteSection
+          header='Arsip'
+          notes={archivedNotes}
+          archive={props.archiveBtnHandler}
+          deleteModal={onClickDeleteModalHandler}
+        />
+      </div>
+      <DeleteMessage
+        id={selectedNote.id}
+        title={selectedNote.title}
+        modal={showModal}
+        toggleModal={onClickBackModalHandler}
+        delete={onClickDeleteHandler}
       />
-      <NoteSection
-        header='Arsip'
-        notes={archivedNotes}
-        delete={props.deleteBtnHandler}
-        archive={props.archiveBtnHandler}
-      />
-    </div>
+    </>
   );
 };
 
@@ -30,8 +57,8 @@ const NoteSection = ({ notes, ...props }) => {
         <NoteCard
           key={note.id}
           {...note}
-          delete={props.delete}
           archive={props.archive}
+          modal={props.deleteModal}
         />
       ));
     } else {
