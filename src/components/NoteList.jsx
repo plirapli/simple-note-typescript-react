@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NoteCard, DeleteMessage } from './_index';
+import { NoteCard, DeleteMessage } from './_index.ts';
 import styles from '../assets/style/NoteList.module.css';
 
 const NoteList = ({ notes, ...props }) => {

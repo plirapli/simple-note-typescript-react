@@ -1,21 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Header, InputForm, NoteList } from './components/_index';
-import { getInitialData } from './utils/index';
+import { Header, InputForm, NoteList } from './components/_index.ts';
+import { getDataFromLocalStorage } from './utils/index.ts';
 
 const App = () => {
   const STORAGE_KEY = 'NOTES_LIST';
-  const [notes, setNotes] = useState(() => {
-    const savedTodos = localStorage.getItem(STORAGE_KEY);
-
-    if (savedTodos) {
-      try {
-        const parse = JSON.parse(savedTodos);
-        return parse || [];
-      } catch (err) {
-        alert(err.message);
-      }
-    }
-  });
+  const [notes, setNotes] = useState(getDataFromLocalStorage());
   const [inputSearch, setInputSearch] = useState('');
 
   const filteredNotes = notes.filter((note) =>

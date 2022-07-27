@@ -1,4 +1,4 @@
-import { showFormattedDate } from '../utils/index';
+import { showFormattedDate } from '../utils/index.ts';
 import styles from '../assets/style/NoteCard.module.css';
 
 const NoteCard = (props) => {

@@ -1,3 +1,5 @@
+const STORAGE_KEY = 'NOTES_LIST';
+
 const getInitialData = () => [
   {
     id: 1,
@@ -43,8 +45,15 @@ const getInitialData = () => [
   },
 ];
 
-const showFormattedDate = (date) => {
-  const options = {
+const showFormattedDate = (date: Date) => {
+  interface Options {
+    weekday: string;
+    year: string;
+    month: string;
+    day: string;
+  }
+
+  const options:Options = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -53,4 +62,19 @@ const showFormattedDate = (date) => {
   return new Date(date).toLocaleDateString('id-ID', options);
 };
 
-export { getInitialData, showFormattedDate };
+const getDataFromLocalStorage = () => {
+  const savedTodos = localStorage.getItem(STORAGE_KEY);
+  let parse;
+
+  if (savedTodos) {
+    try {
+      parse = JSON.parse(savedTodos);
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  return parse || [];
+};
+
+export { getInitialData, showFormattedDate, getDataFromLocalStorage };
