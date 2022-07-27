@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Header, InputForm, NoteList } from './components/_index.ts';
-import { getDataFromLocalStorage } from './utils/index.ts';
+import * as React from 'react';
+import { Header, InputForm, NoteList } from './components/_index';
+import { getDataFromLocalStorage } from './utils/index';
 
-const App = () => {
+const App:React.FC  = () => {
   const STORAGE_KEY = 'NOTES_LIST';
-  const [notes, setNotes] = useState(getDataFromLocalStorage());
-  const [inputSearch, setInputSearch] = useState('');
+  const [notes, setNotes] = React.useState(getDataFromLocalStorage());
+  const [inputSearch, setInputSearch] = React.useState('');
 
   const filteredNotes = notes.filter((note) =>
     inputSearch ? note.body.toLowerCase().includes(inputSearch) : note
@@ -26,9 +26,14 @@ const App = () => {
     ]);
   };
 
-  const onClickArchiveHandler = (id) => {
+  const onClickArchiveHandler = (id: number) => {
+    interface Notes {
+      id: number
+      isArchived: boolean  
+    }
+
     setNotes(
-      notes.map((note) => {
+      notes.map((note: Notes) => {
         if (note.id === id) {
           return {
             ...note,
@@ -40,11 +45,11 @@ const App = () => {
     );
   };
 
-  const onClickDeleteHandler = (id) => {
+  const onClickDeleteHandler = (id: number) => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
-  useEffect(
+  React.useEffect(
     () => localStorage.setItem(STORAGE_KEY, JSON.stringify(notes)),
     [notes]
   );

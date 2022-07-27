@@ -1,12 +1,19 @@
-const Header = (props) => {
+import * as React from "react";
+
+interface HeaderProps {
+  search: any
+  input: string
+}
+
+const Header:React.FC<HeaderProps> = ({search, input}) => {
   return (
     <header>
       <h1>Catatan</h1>
       <input
-        onChange={props.search}
+        onChange={search}
         className='searchBar'
         type='text'
-        value={props.input}
+        value={input}
         placeholder='Cari catatan...'
       />
     </header>

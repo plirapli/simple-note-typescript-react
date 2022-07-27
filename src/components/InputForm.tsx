@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import * as React from 'react';
 import styles from '../assets/style/InputForm.module.css';
 
-const InputForm = (props) => {
-  const [newTitle, setNewTitle] = useState('');
-  const [newBody, setNewBody] = useState('');
+interface Props {
+  addNote: Function
+}
+
+const InputForm:React.FC<Props> = (props) => {
+  const [newTitle, setNewTitle] = React.useState('');
+  const [newBody, setNewBody] = React.useState('');
 
   const CharLimit = () => {
     const charLeft = 50 - newTitle.length;
@@ -74,7 +78,6 @@ const InputForm = (props) => {
         />
         <textarea
           onChange={onChangeBodyHandler}
-          type='text'
           value={newBody}
           placeholder='What to do...'
           required></textarea>

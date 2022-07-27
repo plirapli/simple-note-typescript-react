@@ -1,10 +1,16 @@
-import { useState } from 'react';
-import { NoteCard, DeleteMessage } from './_index.ts';
+import * as React from 'react';
+import { NoteCard, DeleteMessage } from './_index';
 import styles from '../assets/style/NoteList.module.css';
 
-const NoteList = ({ notes, ...props }) => {
-  const [selectedNote, setSelectedNote] = useState({});
-  const [showModal, setShowModal] = useState(false);
+interface Props {
+  archiveBtnHandler: Function
+  deleteBtnHandler: Function
+  notes: any
+}
+
+const NoteList:React.FC<Props> = ({ notes, ...props }) => {
+  const [selectedNote, setSelectedNote] = React.useState({id: 0, title: ''});
+  const [showModal, setShowModal] = React.useState(false);
 
   const unarchivedNotes = notes.filter((note) => !note.isArchived);
   const archivedNotes = notes.filter((note) => note.isArchived);
