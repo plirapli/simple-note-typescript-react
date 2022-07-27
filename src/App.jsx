@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header, InputForm, NoteList } from './components/_index';
 import { getInitialData } from './utils/index';
 
 const App = () => {
-  const [notes, setNotes] = useState(getInitialData());
+  const STORAGE_KEY = 'NOTES_LIST';
+  const [notes, setNotes] = useState(() => {
+    const savedTodos = localStorage.getItem(STORAGE_KEY);
+
+    if (savedTodos) {
+      try {
+        const parse = JSON.parse(savedTodos);
+        return parse || [];
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+  });
   const [inputSearch, setInputSearch] = useState('');
 
   const filteredNotes = notes.filter((note) =>
@@ -39,8 +51,14 @@ const App = () => {
     );
   };
 
-  const onClickDeleteHandler = (id) =>
+  const onClickDeleteHandler = (id) => {
     setNotes(notes.filter((note) => note.id !== id));
+  };
+
+  useEffect(
+    () => localStorage.setItem(STORAGE_KEY, JSON.stringify(notes)),
+    [notes]
+  );
 
   return (
     <>
