@@ -1,18 +1,23 @@
-import * as React from 'react'
+import * as React from 'react';
 import { showFormattedDate } from '../utils/index';
 import styles from '../assets/style/NoteCard.module.css';
 
 interface Props {
-  id: number
-  title: string
-  body: string
-  createdAt: Date
-  archive: Function
-  modal: Function
+  id: number;
+  title: string;
+  body: string;
+  createdAt: Date;
+  archive: Function;
+  modal: Function;
 }
 
-const NoteCard:React.FC<Props> = (props) => {
-  const { id, title, body, createdAt } = props;
+const NoteCard: React.FC<Props> = ({
+  id,
+  title,
+  body,
+  createdAt,
+  ...props
+}) => {
   const formattedDate = showFormattedDate(createdAt);
 
   return (

@@ -1,15 +1,15 @@
-import * as React from 'react'
+import * as React from 'react';
 import styles from '../assets/style/DeleteMessage.module.css';
 
 interface Props {
-  id: number
-  title: string
-  modal: boolean
-  toggleModal: Function
-  delete: Function
+  id: number;
+  title: string;
+  modal: boolean;
+  toggleModal: React.MouseEventHandler<HTMLButtonElement>;
+  delete: Function;
 }
 
-const DeleteMessage:React.FC<Props> = (props) => {
+const DeleteMessage: React.FC<Props> = (props) => {
   const { id, title = 'Nama Judul' } = props;
 
   return (
@@ -20,7 +20,7 @@ const DeleteMessage:React.FC<Props> = (props) => {
           <p>Apakah anda yakin ingin menghapus catatan berjudul "{title}"?</p>
         </article>
         <div className={styles.button_container}>
-          <button onClick={() => props.toggleModal} className={styles.btn_back}>
+          <button onClick={props.toggleModal} className={styles.btn_back}>
             Kembali
           </button>
           <button

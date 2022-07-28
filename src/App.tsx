@@ -2,19 +2,20 @@ import * as React from 'react';
 import { Header, InputForm, NoteList } from './components/_index';
 import { getDataFromLocalStorage } from './utils/index';
 
-const App:React.FC  = () => {
+const App: React.FC = () => {
   const STORAGE_KEY = 'NOTES_LIST';
   const [notes, setNotes] = React.useState(getDataFromLocalStorage());
   const [inputSearch, setInputSearch] = React.useState('');
 
-  const filteredNotes = notes.filter((note) =>
+  const filteredNotes = notes.filter((note: { body: string }) =>
     inputSearch ? note.body.toLowerCase().includes(inputSearch) : note
   );
 
-  const searchHandler = (e) => setInputSearch(e.target.value.toLowerCase());
+  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setInputSearch(e.target.value.toLowerCase());
 
-  const addNoteHandler = ({ title, body }) => {
-    setNotes((prev) => [
+  const addNoteHandler = ({ title, body }: { title: string; body: string }) => {
+    setNotes((prev: any) => [
       ...prev,
       {
         id: +new Date(),
@@ -28,8 +29,8 @@ const App:React.FC  = () => {
 
   const onClickArchiveHandler = (id: number) => {
     interface Notes {
-      id: number
-      isArchived: boolean  
+      id: number;
+      isArchived: boolean;
     }
 
     setNotes(
@@ -46,7 +47,7 @@ const App:React.FC  = () => {
   };
 
   const onClickDeleteHandler = (id: number) => {
-    setNotes(notes.filter((note) => note.id !== id));
+    setNotes(notes.filter((note: { id: number }) => note.id !== id));
   };
 
   React.useEffect(

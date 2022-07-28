@@ -2,10 +2,10 @@ import * as React from 'react';
 import styles from '../assets/style/InputForm.module.css';
 
 interface Props {
-  addNote: Function
+  addNote: Function;
 }
 
-const InputForm:React.FC<Props> = (props) => {
+const InputForm: React.FC<Props> = (props) => {
   const [newTitle, setNewTitle] = React.useState('');
   const [newBody, setNewBody] = React.useState('');
 
@@ -22,10 +22,10 @@ const InputForm:React.FC<Props> = (props) => {
 
   let charLength = newTitle.length;
 
-  const onKeyDownTitleHandler = (e) => {
+  const onKeyDownTitleHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     charLength = newTitle.length;
 
-    if (e.keyCode === 8) {
+    if (e.key === 'Backspace') {
       /* 
         agar ketika judul diinput 
         via paste (tidak diketikkan) 
@@ -34,15 +34,16 @@ const InputForm:React.FC<Props> = (props) => {
     }
   };
 
-  const onChangeTitleHandler = (e) => {
+  const onChangeTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (charLength < 50) {
       setNewTitle(() => e.target.value);
     }
   };
 
-  const onChangeBodyHandler = (e) => setNewBody(() => e.target.value);
+  const onChangeBodyHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+    setNewBody(() => e.target.value);
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     let note = {

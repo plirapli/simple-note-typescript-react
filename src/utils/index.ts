@@ -46,7 +46,7 @@ const getInitialData = () => [
 ];
 
 const showFormattedDate = (date: Date) => {
-  const options:any = {
+  const options: any = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -62,7 +62,7 @@ const getDataFromLocalStorage = () => {
   if (savedTodos) {
     try {
       parse = JSON.parse(savedTodos);
-    } catch (err) {
+    } catch (err: any) {
       alert(err.message);
     }
   }
