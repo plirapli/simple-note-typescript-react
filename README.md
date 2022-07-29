@@ -1,3 +1,3 @@
-# Aplikasi Catatan Sederhana
+# Simple Note Apps
 
-Aplikasi catatan sederhana yang dibuat menggunakan React & Typescript
+Notes app created using React & Typescript
