@@ -7,7 +7,8 @@
   text-align: center;
 }
 
-.note_char_left {
+.note_char_right {
+  margin-top: 0.5rem;
   text-align: right;
   color: rgba(0, 0, 0, 0.3);
 }

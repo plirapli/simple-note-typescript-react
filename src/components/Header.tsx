@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface HeaderProps {
-  search: any
-  input: string
+  search: React.ChangeEventHandler<HTMLInputElement>;
+  input: string;
 }
 
-const Header:React.FC<HeaderProps> = ({search, input}) => {
+const Header: React.FC<HeaderProps> = ({ search, input }) => {
   return (
     <header>
       <h1>Catatan</h1>

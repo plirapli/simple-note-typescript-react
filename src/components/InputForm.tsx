@@ -14,7 +14,7 @@ const InputForm: React.FC<Props> = (props) => {
     let textColor = charLeft < 10 ? 'danger' : '';
 
     return (
-      <div className={`${styles.note_char_left} ${textColor}`}>
+      <div className={`${styles.note_char_right} ${textColor}`}>
         Sisa karakter {charLeft}
       </div>
     );
