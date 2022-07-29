@@ -80,7 +80,7 @@ const InputForm: React.FC<Props> = (props) => {
         <textarea
           onChange={onChangeBodyHandler}
           value={newBody}
-          placeholder='What to do...'
+          placeholder='Isi catatan...'
           required></textarea>
         <button type='submit'>Buat</button>
       </form>
