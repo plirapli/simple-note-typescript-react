@@ -46,7 +46,14 @@ const getInitialData = () => [
 ];
 
 const showFormattedDate = (date: Date) => {
-  const options: any = {
+  interface Options {
+    weekday: 'long';
+    year: 'numeric';
+    month: 'long';
+    day: 'numeric';
+  }
+
+  const options: Options = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
